@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join a family on Kirana</title><link rel="stylesheet" href="style.css"><link rel="icon" href="icon.png">
+<meta name="robots" content="noindex"></head>
+<body><main>
+<header><img src="icon.png" alt=""><div><h1>Join your family</h1><p class="muted">Kirana: Family Groceries</p></div></header>
+<p>You've been invited to a family grocery list. Open the link in Kirana to join.</p>
+<p><a id="open" class="card" style="display:block;text-align:center;font-weight:600;text-decoration:none">Open in Kirana</a></p>
+<div class="card"><strong>Don't have Kirana yet?</strong><p>Install it from the <a href="https://apps.apple.com/app/id6826619065">App Store</a>, sign in, then come back and tap Open in Kirana.</p></div>
+<p class="muted" id="missing" hidden>This link is incomplete. Ask your family to share it again.</p>
+<nav><a href="index.html">Support</a><a href="privacy.html">Privacy</a></nav>
+</main>
+<script>
+// The token lives in the URL fragment, so it is never sent to this web server.
+const token=location.hash.slice(1);
+if(/^[A-Za-z0-9_-]{43}$|^[A-Za-z2-9]{8}$/.test(token)){
+  const url='kirana://join?t='+encodeURIComponent(token);
+  document.getElementById('open').href=url;
+  location.href=url;
+}else{document.getElementById('open').hidden=true;document.getElementById('missing').hidden=false;}
+</script>
+</body></html>
